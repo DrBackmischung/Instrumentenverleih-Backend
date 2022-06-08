@@ -1,6 +1,5 @@
 package de.wi2020sebgroup1.instrumentenverleih.controller;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -17,12 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.UserLoginObject;
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.UserRegistrationObject;
-import de.wi2020sebgroup1.instrumentenverleih.entities.City;
 import de.wi2020sebgroup1.instrumentenverleih.entities.User;
-import de.wi2020sebgroup1.instrumentenverleih.exceptions.RoleNotFoundException;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.UserAlreadyExistsException;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.CityRepository;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.RoleRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
 import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
 
@@ -32,12 +27,6 @@ public class AccountController {
 
 	@Autowired
 	UserRepository userRepository;
-	
-	@Autowired
-	CityRepository cityRepository;
-	
-	@Autowired
-	RoleRepository roleRepository;
 	
 	@Autowired
 	EmailService emailService;
@@ -67,16 +56,6 @@ public class AccountController {
 		
 		User toAdd = new User();
 		
-		if(uro.plz != 0) {
-			List<City> citySearch = cityRepository.findByPlz(uro.plz);
-			if(citySearch.size() == 0) {
-				toAdd.setCity(cityRepository.save(new City(uro.plz, uro.city)));
-			} else {
-				City c = citySearch.get(0);
-				toAdd.setCity(c);
-			}
-		}
-		
 		toAdd.setUserName(uro.username);
 		toAdd.setEmail(uro.email);
 		toAdd.setName(uro.name);
@@ -84,11 +63,7 @@ public class AccountController {
 		toAdd.setPassword(uro.passwordHash);
 		toAdd.setStreet(uro.street);
 		toAdd.setNumber(uro.number);
-		try {
-			toAdd.setRole(roleRepository.findByAuthorization("USER").get());
-		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Object>(new RoleNotFoundException("USER"), HttpStatus.NOT_FOUND);
-		}
+		toAdd.setCity(uro.city);
 
 		emailService.sendMail(uro.email, "Registration completed!", new EmailVariablesObject(uro.username, uro.firstName, uro.name, "", "", "", "", "", "", "", ""), "Registration.html");
 		

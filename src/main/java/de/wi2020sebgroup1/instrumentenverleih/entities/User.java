@@ -2,19 +2,13 @@ package de.wi2020sebgroup1.instrumentenverleih.entities;
 
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -53,18 +47,17 @@ public class User {
 	@Column
 	@NonNull
 	private String number;
-
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "city_id", referencedColumnName = "id")
-	private City city;
+	
+	@Column
+	@NonNull
+	private String city;
 	
 	public User() {
 		
 	}
 	
 	public User(String username, String name, String firstName, String email, String password,
-			String street, String number, City city) {
+			String street, String number, String city) {
 		super();
 		this.username = username;
 		this.name = name;
@@ -140,11 +133,11 @@ public class User {
 		this.number = number;
 	}
 
-	public City getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(City city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 

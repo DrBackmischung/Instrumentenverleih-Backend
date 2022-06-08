@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import de.wi2020sebgroup1.instrumentenverleih.entities.User;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.UserNotFoundException;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.NewsRepository;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.ReviewRepository;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.TicketRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
 
 @Controller
@@ -30,27 +27,7 @@ public class ProfileController {
 	BookingRepositroy bookingRepositroy;
 	
 	@Autowired
-	TicketRepository ticketRepository;
-
-	@Autowired
-	NewsRepository newsRepository;
-	
-	@Autowired
-	ReviewRepository reviewRepository;
-	
-	@Autowired
 	UserRepository userReporitory;
-	
-	@GetMapping("/{id}/tickets")
-	public ResponseEntity<Object> getTickets(@PathVariable UUID id){
-		Optional<User> u = userReporitory.findById(id);
-		try {
-			User user = u.get();
-			return new ResponseEntity<Object>(ticketRepository.findAllByUser(user), HttpStatus.OK);
-		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Object>(new UserNotFoundException(id).getMessage(), HttpStatus.NOT_FOUND);
-		}
-	}
 	
 	@GetMapping("/{id}/bookings")
 	public ResponseEntity<Object> getBookings(@PathVariable UUID id){
@@ -58,28 +35,6 @@ public class ProfileController {
 		try {
 			User user = u.get();
 			return new ResponseEntity<Object>(bookingRepositroy.findAllByUser(user), HttpStatus.OK);
-		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Object>(new UserNotFoundException(id).getMessage(), HttpStatus.NOT_FOUND);
-		}
-	}
-	
-	@GetMapping("/{id}/reviews")
-	public ResponseEntity<Object> getReviews(@PathVariable UUID id){
-		Optional<User> u = userReporitory.findById(id);
-		try {
-			User user = u.get();
-			return new ResponseEntity<Object>(reviewRepository.findAllByUser(user), HttpStatus.OK);
-		} catch(NoSuchElementException e) {
-			return new ResponseEntity<Object>(new UserNotFoundException(id).getMessage(), HttpStatus.NOT_FOUND);
-		}
-	}
-	
-	@GetMapping("/{id}/news")
-	public ResponseEntity<Object> getNews(@PathVariable UUID id){
-		Optional<User> u = userReporitory.findById(id);
-		try {
-			User user = u.get();
-			return new ResponseEntity<Object>(newsRepository.findAllByUser(user), HttpStatus.OK);
 		} catch(NoSuchElementException e) {
 			return new ResponseEntity<Object>(new UserNotFoundException(id).getMessage(), HttpStatus.NOT_FOUND);
 		}

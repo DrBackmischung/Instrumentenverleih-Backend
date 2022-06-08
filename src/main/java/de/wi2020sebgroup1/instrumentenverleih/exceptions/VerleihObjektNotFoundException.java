@@ -6,12 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class TicketsForBookingNotFoundException extends Exception {
+public class VerleihObjektNotFoundException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
-	public TicketsForBookingNotFoundException(UUID id) {
-		super("No tickets for booking with id \"" + id + "\" found!");
+	public VerleihObjektNotFoundException(UUID id) {
+		super("Object with id \"" + id + "\" not found!");
 	}
 
 }
