@@ -34,25 +34,26 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.ShowConfigurationObject;
-import de.wi2020sebgroup1.cinema.entities.Cinema;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoom;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoomSeatingPlan;
-import de.wi2020sebgroup1.cinema.entities.City;
-import de.wi2020sebgroup1.cinema.entities.Movie;
-import de.wi2020sebgroup1.cinema.entities.Price;
-import de.wi2020sebgroup1.cinema.entities.Seat;
-import de.wi2020sebgroup1.cinema.entities.SeatsBluePrint;
-import de.wi2020sebgroup1.cinema.entities.Show;
-import de.wi2020sebgroup1.cinema.enums.SeatState;
-import de.wi2020sebgroup1.cinema.enums.SeatType;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRepository;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRoomRepository;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRoomSeatingPlanRepository;
-import de.wi2020sebgroup1.cinema.repositories.MovieRepository;
-import de.wi2020sebgroup1.cinema.repositories.SeatBluePrintRepository;
-import de.wi2020sebgroup1.cinema.repositories.SeatRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.ShowConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.controller.ShowController;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Cinema;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoomSeatingPlan;
+import de.wi2020sebgroup1.instrumentenverleih.entities.City;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Seat;
+import de.wi2020sebgroup1.instrumentenverleih.entities.SeatsBluePrint;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatState;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRoomRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRoomSeatingPlanRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.MovieRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatBluePrintRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

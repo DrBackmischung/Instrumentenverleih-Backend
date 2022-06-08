@@ -30,12 +30,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.entities.Movie;
-import de.wi2020sebgroup1.cinema.entities.Review;
-import de.wi2020sebgroup1.cinema.entities.Show;
-import de.wi2020sebgroup1.cinema.repositories.MovieRepository;
-import de.wi2020sebgroup1.cinema.repositories.ReviewRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Review;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.MovieRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ReviewRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

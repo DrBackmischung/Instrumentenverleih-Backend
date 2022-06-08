@@ -28,9 +28,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.entities.Price;
-import de.wi2020sebgroup1.cinema.enums.SeatType;
-import de.wi2020sebgroup1.cinema.repositories.PriceRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.PriceRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

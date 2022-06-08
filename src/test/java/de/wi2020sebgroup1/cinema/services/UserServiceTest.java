@@ -13,8 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.UserService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

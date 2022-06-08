@@ -27,19 +27,19 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.entities.Booking;
-import de.wi2020sebgroup1.cinema.entities.Snack;
-import de.wi2020sebgroup1.cinema.entities.News;
-import de.wi2020sebgroup1.cinema.entities.Review;
-import de.wi2020sebgroup1.cinema.entities.Ticket;
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.enums.BookingState;
-import de.wi2020sebgroup1.cinema.enums.TicketState;
-import de.wi2020sebgroup1.cinema.repositories.BookingRepositroy;
-import de.wi2020sebgroup1.cinema.repositories.NewsRepository;
-import de.wi2020sebgroup1.cinema.repositories.ReviewRepository;
-import de.wi2020sebgroup1.cinema.repositories.TicketRepository;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
+import de.wi2020sebgroup1.instrumentenverleih.entities.News;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Review;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Snack;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Ticket;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.enums.BookingState;
+import de.wi2020sebgroup1.instrumentenverleih.enums.TicketState;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.NewsRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ReviewRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.TicketRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

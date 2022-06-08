@@ -29,20 +29,20 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.TicketConfigurationObject;
-import de.wi2020sebgroup1.cinema.entities.Price;
-import de.wi2020sebgroup1.cinema.entities.Seat;
-import de.wi2020sebgroup1.cinema.entities.Show;
-import de.wi2020sebgroup1.cinema.entities.Ticket;
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.enums.SeatState;
-import de.wi2020sebgroup1.cinema.enums.SeatType;
-import de.wi2020sebgroup1.cinema.helper.SemaphoreVault;
-import de.wi2020sebgroup1.cinema.repositories.PriceRepository;
-import de.wi2020sebgroup1.cinema.repositories.SeatRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
-import de.wi2020sebgroup1.cinema.repositories.TicketRepository;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.TicketConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Seat;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Ticket;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatState;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.helper.SemaphoreVault;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.PriceRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.TicketRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

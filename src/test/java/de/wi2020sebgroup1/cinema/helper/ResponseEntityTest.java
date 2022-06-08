@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import de.wi2020sebgroup1.instrumentenverleih.helper.ResponseEntity;
+
 public class ResponseEntityTest {
 	
 	@Test

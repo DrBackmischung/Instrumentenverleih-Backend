@@ -28,8 +28,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.entities.Snack;
-import de.wi2020sebgroup1.cinema.repositories.SnackRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Snack;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SnackRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

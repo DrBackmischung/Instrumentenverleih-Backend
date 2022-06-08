@@ -9,6 +9,9 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import de.wi2020sebgroup1.instrumentenverleih.entities.News;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+
 public class NewsTest {
 	
 	@Test

@@ -9,6 +9,11 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import de.wi2020sebgroup1.instrumentenverleih.entities.Cinema;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+
 public class ShowTest {
 	
 	@Test

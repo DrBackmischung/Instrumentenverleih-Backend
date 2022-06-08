@@ -30,15 +30,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.EmailVariablesObject;
-import de.wi2020sebgroup1.cinema.configurationObject.PWResetObject;
-import de.wi2020sebgroup1.cinema.configurationObject.TokenConfigurationObject;
-import de.wi2020sebgroup1.cinema.entities.Token;
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.repositories.TokenRepository;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
-import de.wi2020sebgroup1.cinema.services.EmailService;
-import de.wi2020sebgroup1.cinema.services.HTMLService;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.PWResetObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.TokenConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Token;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.TokenRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
+import de.wi2020sebgroup1.instrumentenverleih.services.HTMLService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

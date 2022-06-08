@@ -17,14 +17,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 
-import de.wi2020sebgroup1.cinema.configurationObject.SeatsBlueprintConfigurationObject;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoom;
-import de.wi2020sebgroup1.cinema.entities.Price;
-import de.wi2020sebgroup1.cinema.entities.SeatsBluePrint;
-import de.wi2020sebgroup1.cinema.enums.SeatType;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRoomRepository;
-import de.wi2020sebgroup1.cinema.repositories.PriceRepository;
-import de.wi2020sebgroup1.cinema.repositories.SeatBluePrintRepository;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.SeatsBlueprintConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.entities.SeatsBluePrint;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRoomRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.PriceRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatBluePrintRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.QRCodeGenerator;
+import de.wi2020sebgroup1.instrumentenverleih.services.SeatBlueprintService;
+import de.wi2020sebgroup1.instrumentenverleih.services.SeatService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

@@ -27,6 +27,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.wi2020sebgroup1.instrumentenverleih.helper.ResponseEntity;
+import de.wi2020sebgroup1.instrumentenverleih.helper.ResponseRepository;
+
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")
 @AutoConfigureMockMvc

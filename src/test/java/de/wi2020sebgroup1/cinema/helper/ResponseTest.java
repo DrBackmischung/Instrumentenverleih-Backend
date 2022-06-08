@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.springframework.http.HttpStatus;
 
+import de.wi2020sebgroup1.instrumentenverleih.helper.Response;
+import de.wi2020sebgroup1.instrumentenverleih.helper.ResponseSeries;
+
 public class ResponseTest {
 	
 	@Test

@@ -28,11 +28,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.CinemaRoomSeattingPlanConfigurationObject;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoom;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoomSeatingPlan;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRoomRepository;
-import de.wi2020sebgroup1.cinema.repositories.CinemaRoomSeatingPlanRepository;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.CinemaRoomSeattingPlanConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoomSeatingPlan;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRoomRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CinemaRoomSeatingPlanRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

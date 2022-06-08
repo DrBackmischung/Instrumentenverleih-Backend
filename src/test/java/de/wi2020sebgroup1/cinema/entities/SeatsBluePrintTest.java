@@ -7,7 +7,12 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import de.wi2020sebgroup1.cinema.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoomSeatingPlan;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.entities.SeatsBluePrint;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
 
 public class SeatsBluePrintTest {
 	

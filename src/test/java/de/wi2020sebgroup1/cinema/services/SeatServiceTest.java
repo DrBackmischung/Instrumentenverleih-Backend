@@ -15,13 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 
-import de.wi2020sebgroup1.cinema.entities.Seat;
-import de.wi2020sebgroup1.cinema.enums.SeatState;
-import de.wi2020sebgroup1.cinema.helper.SemaphoreVault;
-import de.wi2020sebgroup1.cinema.repositories.BookingRepositroy;
-import de.wi2020sebgroup1.cinema.repositories.SeatRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
-import de.wi2020sebgroup1.cinema.repositories.TicketRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Seat;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatState;
+import de.wi2020sebgroup1.instrumentenverleih.helper.SemaphoreVault;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.TicketRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.SeatService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

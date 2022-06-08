@@ -36,31 +36,31 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.BookingConfigurationObject;
-import de.wi2020sebgroup1.cinema.configurationObject.EmailVariablesObject;
-import de.wi2020sebgroup1.cinema.entities.Booking;
-import de.wi2020sebgroup1.cinema.entities.CinemaRoom;
-import de.wi2020sebgroup1.cinema.entities.Movie;
-import de.wi2020sebgroup1.cinema.entities.Price;
-import de.wi2020sebgroup1.cinema.entities.Seat;
-import de.wi2020sebgroup1.cinema.entities.Show;
-import de.wi2020sebgroup1.cinema.entities.Snack;
-import de.wi2020sebgroup1.cinema.entities.Ticket;
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.enums.BookingState;
-import de.wi2020sebgroup1.cinema.enums.SeatState;
-import de.wi2020sebgroup1.cinema.enums.SeatType;
-import de.wi2020sebgroup1.cinema.repositories.BookingRepositroy;
-import de.wi2020sebgroup1.cinema.repositories.PriceRepository;
-import de.wi2020sebgroup1.cinema.repositories.SeatRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
-import de.wi2020sebgroup1.cinema.repositories.SnackRepository;
-import de.wi2020sebgroup1.cinema.repositories.TicketRepository;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
-import de.wi2020sebgroup1.cinema.services.EmailService;
-import de.wi2020sebgroup1.cinema.services.HTMLService;
-import de.wi2020sebgroup1.cinema.services.QRCodeGenerator;
-import de.wi2020sebgroup1.cinema.services.SeatService;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.BookingConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CinemaRoom;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Price;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Seat;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Snack;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Ticket;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.enums.BookingState;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatState;
+import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.PriceRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SeatRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.SnackRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.TicketRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
+import de.wi2020sebgroup1.instrumentenverleih.services.HTMLService;
+import de.wi2020sebgroup1.instrumentenverleih.services.QRCodeGenerator;
+import de.wi2020sebgroup1.instrumentenverleih.services.SeatService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

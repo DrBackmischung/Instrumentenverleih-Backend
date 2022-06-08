@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import de.wi2020sebgroup1.instrumentenverleih.services.QRCodeGenerator;
+
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")
 public class QRGeneratorTest {

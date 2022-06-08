@@ -27,8 +27,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.entities.CreditCard;
-import de.wi2020sebgroup1.cinema.repositories.CreditCardRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.CreditCard;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CreditCardRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

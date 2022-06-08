@@ -33,17 +33,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.wi2020sebgroup1.cinema.configurationObject.EmailVariablesObject;
-import de.wi2020sebgroup1.cinema.configurationObject.UserLoginObject;
-import de.wi2020sebgroup1.cinema.configurationObject.UserRegistrationObject;
-import de.wi2020sebgroup1.cinema.entities.City;
-import de.wi2020sebgroup1.cinema.entities.Role;
-import de.wi2020sebgroup1.cinema.entities.User;
-import de.wi2020sebgroup1.cinema.repositories.CityRepository;
-import de.wi2020sebgroup1.cinema.repositories.RoleRepository;
-import de.wi2020sebgroup1.cinema.repositories.UserRepository;
-import de.wi2020sebgroup1.cinema.services.EmailService;
-import de.wi2020sebgroup1.cinema.services.HTMLService;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.UserLoginObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.UserRegistrationObject;
+import de.wi2020sebgroup1.instrumentenverleih.entities.City;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Role;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.CityRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.RoleRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
+import de.wi2020sebgroup1.instrumentenverleih.services.HTMLService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

@@ -9,7 +9,12 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import de.wi2020sebgroup1.cinema.enums.BookingState;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Snack;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Ticket;
+import de.wi2020sebgroup1.instrumentenverleih.entities.User;
+import de.wi2020sebgroup1.instrumentenverleih.enums.BookingState;
 
 public class BookingTest {
 	

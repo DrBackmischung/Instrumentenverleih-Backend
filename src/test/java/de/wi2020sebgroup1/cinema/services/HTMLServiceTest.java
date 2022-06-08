@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-import de.wi2020sebgroup1.cinema.configurationObject.EmailVariablesObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
+import de.wi2020sebgroup1.instrumentenverleih.services.HTMLService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

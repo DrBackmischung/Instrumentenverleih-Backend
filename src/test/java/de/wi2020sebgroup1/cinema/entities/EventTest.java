@@ -9,6 +9,8 @@ import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import de.wi2020sebgroup1.instrumentenverleih.entities.Event;
+
 public class EventTest {
 	
 	@Test

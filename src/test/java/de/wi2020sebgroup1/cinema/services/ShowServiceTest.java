@@ -18,10 +18,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 
-import de.wi2020sebgroup1.cinema.entities.Movie;
-import de.wi2020sebgroup1.cinema.entities.Show;
-import de.wi2020sebgroup1.cinema.repositories.MovieRepository;
-import de.wi2020sebgroup1.cinema.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Show;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.MovieRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ShowRepository;
+import de.wi2020sebgroup1.instrumentenverleih.services.DateService;
+import de.wi2020sebgroup1.instrumentenverleih.services.ShowService;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")

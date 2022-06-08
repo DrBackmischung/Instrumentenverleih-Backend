@@ -21,10 +21,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import de.wi2020sebgroup1.cinema.entities.Movie;
-import de.wi2020sebgroup1.cinema.entities.Review;
-import de.wi2020sebgroup1.cinema.repositories.MovieRepository;
-import de.wi2020sebgroup1.cinema.repositories.ReviewRepository;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Movie;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Review;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.MovieRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.ReviewRepository;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:test.properties")
