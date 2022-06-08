@@ -41,17 +41,17 @@ public class HTMLService {
 			e.printStackTrace();
 		}
 		
-		s = s.replace("KINO-USERNAME", evo.getUsername());
-		s = s.replace("KINO-FIRSTNAME", evo.getFirstName());
-		s = s.replace("KINO-LASTNAME", evo.getLastName());
-		s = s.replace("KINO-FILE", evo.getFile());
-		s = s.replace("KINO-LINK", evo.getLink());
-		s = s.replace("KINO-SDATE", evo.getShowDate());
-		s = s.replace("KINO-STIME", evo.getShowTime());
-		s = s.replace("KINO-STITLE", evo.getShowTitle());
-		s = s.replace("KINO-S1", evo.getString1());
-		s = s.replace("KINO-S2", evo.getString2());
-		s = s.replace("KINO-S3", evo.getString3());
+		s = s.replace("USERNAME", evo.getUsername());
+		s = s.replace("FIRSTNAME", evo.getFirstName());
+		s = s.replace("LASTNAME", evo.getLastName());
+		s = s.replace("FILE", evo.getFile());
+		s = s.replace("LINK", evo.getLink());
+		s = s.replace("BOOKINGDATE", evo.getBookingDate());
+		s = s.replace("CATEGORY", evo.getCategory());
+		s = s.replace("INSTRUMENT", evo.getInstrument());
+		s = s.replace("I-S1", evo.getString1());
+		s = s.replace("I-S2", evo.getString2());
+		s = s.replace("I-S3", evo.getString3());
 		
 		return s;
 	}

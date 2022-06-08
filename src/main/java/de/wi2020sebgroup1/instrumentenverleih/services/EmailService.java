@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -29,10 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
-import de.wi2020sebgroup1.instrumentenverleih.entities.Seat;
-import de.wi2020sebgroup1.instrumentenverleih.entities.Snack;
-import de.wi2020sebgroup1.instrumentenverleih.entities.Ticket;
-import de.wi2020sebgroup1.instrumentenverleih.enums.SeatType;
 import rst.pdfbox.layout.elements.Document;
 import rst.pdfbox.layout.elements.ImageElement;
 import rst.pdfbox.layout.elements.Paragraph;
@@ -123,7 +118,7 @@ public class EmailService {
         return true;
     }
 
-    public boolean sendMailBooking(String to, String subject, EmailVariablesObject evo, String file, byte[] qrcode, List<Ticket> tickets, List<Snack> snacks) {
+    public boolean sendMailBooking(String to, String subject, EmailVariablesObject evo, String file, byte[] qrcode) {
 		try {
 
 	    	to.trim();
@@ -141,7 +136,7 @@ public class EmailService {
 	        });
 
 	        Message message;
-			message = prepareMessageWithAttachment(session, EMAIL, to, subject, evo, file, createDocument(evo, qrcode, tickets, snacks));
+			message = prepareMessageWithAttachment(session, EMAIL, to, subject, evo, file, createDocument(evo, qrcode));
 			Transport.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,7 +145,7 @@ public class EmailService {
 		return true;
     }
     
-    public ByteArrayInputStream createDocument(EmailVariablesObject evo, byte[] qrcode, List<Ticket> tickets, List<Snack> snacks) throws IOException {
+    public ByteArrayInputStream createDocument(EmailVariablesObject evo, byte[] qrcode) throws IOException {
     	
     	float hMargin = 40;
     	float vMargin = 50;
@@ -186,38 +181,23 @@ public class EmailService {
     	Paragraph paragraph = new Paragraph();
 
     	paragraph = new Paragraph();
-    	paragraph.addMarkup("*Buchung für "+evo.getShowTitle()+" am "+evo.getShowDate()+" um "+evo.getShowTime()+"*\nRaum: "+evo.getString1(), 15,
+    	paragraph.addMarkup("*Buchung für "+evo.getInstrument()+" ("+evo.getCategory()+")*\n\n", 15,
     		BaseFont.Helvetica);
     	document.add(paragraph, new VerticalLayoutHint(Alignment.Left, 0, 0,
     		40, 20));
 
-    	for(Ticket t : tickets) {
-    		
-    		int row = t.getSeat().getReihe();
-    		int nr = t.getSeat().getPlace();
-    		String type = convertSeatType(t.getSeat());
-    		double price = t.getPrice().getPrice();
-    		String text = "Reihe "+row+", Sitz "+nr+" - Kategorie: "+type+"\nPreis: "+price+"€\n\n";
-        	paragraph = new Paragraph();
-        	paragraph.addMarkup(text, 14, BaseFont.Helvetica);
-        	document.add(paragraph);
-    	}
-
-    	paragraph.addMarkup("\n", 14, BaseFont.Helvetica);
+    	paragraph = new Paragraph();
+    	paragraph.addMarkup("Vielen Dank für Ihre Buchung. Bitte bewahren Sie Ihren QR-Code auf, dieser wird zur Abholung benötigt.\n\n", 13,
+    		BaseFont.Helvetica);
     	document.add(paragraph);
 
-    	if(snacks != null) {
-    		for(Snack s : snacks) {
-
-        		String text = s.getProduct()+"("+s.getSize()+") "+"Preis: "+s.getPrice()+"€\n\n";
-            	paragraph = new Paragraph();
-            	paragraph.addMarkup(text, 14, BaseFont.Helvetica);
-            	document.add(paragraph);
-        	}
-    	}
+    	paragraph = new Paragraph();
+    	paragraph.addMarkup("Name: "+evo.getFirstName()+" "+evo.getLastName()+"\n", 13,
+    		BaseFont.Helvetica);
+    	document.add(paragraph);
 
     	paragraph = new Paragraph();
-    	paragraph.addMarkup("Die AGBs sind auf der Website unter 'https://kino-frontend.vercel.app/agbs' zu sehen. Bitte besuchen Sie 'https://kino-frontend.vercel.app/' für weitere Informationen.", 6,
+    	paragraph.addMarkup("Die AGBs sind auf der Website unter 'localhost:3000' zu sehen. Bitte besuchen Sie 'localhost:3000' für weitere Informationen.", 6,
     		BaseFont.Times);
     	paragraph.setAbsolutePosition(new Position(hMargin, vMargin));
     	document.add(paragraph);
@@ -230,14 +210,6 @@ public class EmailService {
         
         return in;
     	
-    }
-    
-    public String convertSeatType(Seat s) {
-    	if(s.getType() == SeatType.LODGE) return "Loge";
-    	else if(s.getType() == SeatType.PREMIUM) return "Premium";
-    	else if(s.getType() == SeatType.DOUBLESEAT) return "Sofa / Doppelsitz";
-    	else if(s.getType() == SeatType.WHEELCHAIR) return "Rollstuhlplatz";
-    	else return "Parkett";
     }
 	
 }

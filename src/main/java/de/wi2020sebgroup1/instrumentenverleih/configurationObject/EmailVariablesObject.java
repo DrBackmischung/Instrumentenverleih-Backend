@@ -7,24 +7,24 @@ public class EmailVariablesObject {
 	private String lastName;
 	private String link;
 	private String file;
-	private String showTitle;
-	private String showDate;
-	private String showTime;
+	private String category;
+	private String instrument;
+	private String bookingDate;
 	private String string1;
 	private String string2;
 	private String string3;
 	
 	public EmailVariablesObject(String username, String firstName, String lastName, String link, String file,
-			String showTitle, String showDate, String showTime, String string1, String string2, String string3) {
+			String category, String instrument, String bookingDate, String string1, String string2, String string3) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.link = link;
 		this.file = file;
-		this.showTitle = showTitle;
-		this.showDate = showDate;
-		this.showTime = showTime;
+		this.category = category;
+		this.instrument = instrument;
+		this.bookingDate = bookingDate;
 		this.string1 = string1;
 		this.string2 = string2;
 		this.string3 = string3;
@@ -50,18 +50,6 @@ public class EmailVariablesObject {
 		return file;
 	}
 
-	public String getShowTitle() {
-		return showTitle;
-	}
-
-	public String getShowDate() {
-		return showDate;
-	}
-
-	public String getShowTime() {
-		return showTime;
-	}
-
 	public String getString1() {
 		return string1;
 	}
@@ -73,6 +61,18 @@ public class EmailVariablesObject {
 
 	public String getString3() {
 		return string3;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public String getInstrument() {
+		return instrument;
+	}
+
+	public String getBookingDate() {
+		return bookingDate;
 	}
 	
 }
