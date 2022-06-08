@@ -41,6 +41,16 @@ public class VerleihObjekt {
 	
 	public VerleihObjekt() {}
 
+	public VerleihObjekt(@NotNull String category, @NotNull String name, @NotNull String description,
+			@NotNull String soundLink, @NotNull int amount) {
+		super();
+		this.category = category;
+		this.name = name;
+		this.description = description;
+		this.soundLink = soundLink;
+		this.amount = amount;
+	}
+
 	public VerleihObjekt(UUID id, @NotNull String category, @NotNull String name, @NotNull String description,
 			@NotNull String soundLink, @NotNull int amount) {
 		super();

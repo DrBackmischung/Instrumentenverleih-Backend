@@ -18,7 +18,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 @Entity
-@Table(name="booking")
+@Table(name="rentals")
 public class Booking {
 	
 	@Id
@@ -28,6 +28,10 @@ public class Booking {
 	@Column
 	@NotNull
 	private Date bookingDate;
+	
+	@Column
+	@NotNull
+	private boolean active;
 	
 	@Column
 	@Lob
@@ -55,6 +59,14 @@ public class Booking {
 		this.vo = vo;
 	}
 	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -87,6 +99,14 @@ public class Booking {
 		this.user = user;
 	}
 
+
+	public VerleihObjekt getVo() {
+		return vo;
+	}
+
+	public void setVo(VerleihObjekt vo) {
+		this.vo = vo;
+	}
 
 	@Override
 	public int hashCode() {
