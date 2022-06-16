@@ -74,6 +74,30 @@ public class Instrument {
 		this.highlightList = iht;
 		this.detailSections = idt;
 	}
+	
+	public void addIDT(InstrumentDetailsText i) {
+		detailSections.add(i);
+	}
+	
+	public void addIHT(InstrumentHighlightText i) {
+		highlightList.add(i);
+	}
+
+	public List<InstrumentHighlightText> getHighlightList() {
+		return highlightList;
+	}
+
+	public void setHighlightList(List<InstrumentHighlightText> highlightList) {
+		this.highlightList = highlightList;
+	}
+
+	public List<InstrumentDetailsText> getDetailSections() {
+		return detailSections;
+	}
+
+	public void setDetailSections(List<InstrumentDetailsText> detailSections) {
+		this.detailSections = detailSections;
+	}
 
 	public UUID getId() {
 		return id;

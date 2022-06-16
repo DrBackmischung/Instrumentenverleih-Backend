@@ -1,9 +1,7 @@
 package de.wi2020sebgroup1.instrumentenverleih.configurationObject;
 
 import java.util.List;
-
-import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentDetailsText;
-import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentHighlightText;
+import java.util.UUID;
 
 public class InstrumentConfigurationObject {
 
@@ -14,12 +12,12 @@ public class InstrumentConfigurationObject {
 	public String example;
 	public String highlightBackground;
 	public String highlightText;
-	public List<InstrumentHighlightText> highlightList;
-	public List<InstrumentDetailsText> detailSections;
+	public List<UUID> highlightList;
+	public List<UUID> detailSections;
 	
 	public InstrumentConfigurationObject(String title, String category, String mainText, String mainPicture,
 			String example, String highlightBackground, String highlightText,
-			List<InstrumentHighlightText> highlightList, List<InstrumentDetailsText> detailSections) {
+			List<UUID> highlightList, List<UUID> detailSections) {
 		super();
 		this.title = title;
 		this.category = category;

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.InstrumentConfigurationObject;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
 import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentDetailsText;
 import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentHighlightText;
@@ -41,7 +42,24 @@ public class InstrumentController {
 	InstrumentHighlightTextRepository instrumentHighlightTextRepository;
 	
 	@PutMapping("/add")
-	public ResponseEntity<Object> add(@RequestBody Instrument i) {
+	public ResponseEntity<Object> add(@RequestBody InstrumentConfigurationObject ico) {
+		
+		Instrument i = new Instrument();
+		i.setTitle(ico.title);
+		i.setCategory(ico.category);
+		i.setMainText(ico.mainText);
+		i.setMainPicture(ico.mainPicture);
+		i.setExample(ico.example);
+		i.setHighlightBackground(ico.highlightBackground);
+		i.setHighlightText(ico.highlightText);
+		
+		for(UUID u : ico.detailSections) {
+			i.addIDT(instrumentDetailsTextRepository.findById(u).get());
+		}
+		
+		for(UUID u : ico.highlightList) {
+			i.addIHT(instrumentHighlightTextRepository.findById(u).get());
+		}
 		
 		for(InstrumentDetailsText o : i.getIdt()) {
 			instrumentDetailsTextRepository.save(o);
