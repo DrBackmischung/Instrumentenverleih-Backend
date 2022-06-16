@@ -39,7 +39,7 @@ public class Booking {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "show_id", referencedColumnName = "id")
+	@JoinColumn(name = "verleih_id", referencedColumnName = "id")
 	private VerleihObjekt vo;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
