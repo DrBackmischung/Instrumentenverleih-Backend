@@ -23,7 +23,15 @@ public class InstrumentDetailsText {
 	
 	@Column
 	@NotNull
+	private String header;
+	
+	@Column( length = 100000 )
+	@NotNull
 	private String text;
+	
+	@Column
+	@NotNull
+	private String picture;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable
@@ -33,10 +41,13 @@ public class InstrumentDetailsText {
 		
 	}
 
-	public InstrumentDetailsText(@NotNull String text, List<Instrument> instrument) {
+	public InstrumentDetailsText(@NotNull String header, @NotNull String text, @NotNull String picture,
+			List<Instrument> instruments) {
 		super();
+		this.header = header;
 		this.text = text;
-		this.instruments = instrument;
+		this.picture = picture;
+		this.instruments = instruments;
 	}
 
 	public UUID getId() {
@@ -47,6 +58,14 @@ public class InstrumentDetailsText {
 		this.id = id;
 	}
 
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
+	}
+
 	public String getText() {
 		return text;
 	}
@@ -55,20 +74,30 @@ public class InstrumentDetailsText {
 		this.text = text;
 	}
 
-	public List<Instrument> getInstrument() {
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public List<Instrument> getInstruments() {
 		return instruments;
 	}
 
-	public void setInstrument(List<Instrument> instrument) {
-		this.instruments = instrument;
+	public void setInstruments(List<Instrument> instruments) {
+		this.instruments = instruments;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((header == null) ? 0 : header.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((instruments == null) ? 0 : instruments.hashCode());
+		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -82,6 +111,11 @@ public class InstrumentDetailsText {
 		if (getClass() != obj.getClass())
 			return false;
 		InstrumentDetailsText other = (InstrumentDetailsText) obj;
+		if (header == null) {
+			if (other.header != null)
+				return false;
+		} else if (!header.equals(other.header))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -91,6 +125,11 @@ public class InstrumentDetailsText {
 			if (other.instruments != null)
 				return false;
 		} else if (!instruments.equals(other.instruments))
+			return false;
+		if (picture == null) {
+			if (other.picture != null)
+				return false;
+		} else if (!picture.equals(other.picture))
 			return false;
 		if (text == null) {
 			if (other.text != null)
@@ -102,7 +141,8 @@ public class InstrumentDetailsText {
 
 	@Override
 	public String toString() {
-		return "InstrumentDetailsText [id=" + id + ", text=" + text + ", instrument=" + instruments + "]";
+		return "InstrumentDetailsText [id=" + id + ", header=" + header + ", text=" + text + ", picture=" + picture
+				+ ", instruments=" + instruments + "]";
 	}
 
 }

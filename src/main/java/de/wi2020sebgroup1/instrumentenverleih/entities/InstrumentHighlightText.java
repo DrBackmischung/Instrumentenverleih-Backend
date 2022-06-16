@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="idt")
+@Table(name="iht")
 public class InstrumentHighlightText {
 	
 	@Id
