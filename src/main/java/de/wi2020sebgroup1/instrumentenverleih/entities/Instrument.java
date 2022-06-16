@@ -6,9 +6,11 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="instrument")
@@ -46,10 +48,12 @@ public class Instrument {
 	@NotNull
 	private String highlightText;
 	
-	@OneToMany(mappedBy = "instrument")
+	@ManyToMany(mappedBy = "instruments")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<InstrumentHighlightText> highlightList;
 	
-	@OneToMany(mappedBy = "instrument")
+	@ManyToMany(mappedBy = "instruments")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<InstrumentDetailsText> detailSections;
 	
 	public Instrument() {
