@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
+import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentDetailsText;
+import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentHighlightText;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.InstrumentNotFoundException;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentDetailsTextRepository;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentHighlightTextRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentRepository;
 
 @Controller
@@ -30,14 +34,24 @@ public class InstrumentController {
 	@Autowired
 	InstrumentRepository instrumentRepository;
 	
+	@Autowired
+	InstrumentDetailsTextRepository instrumentDetailsTextRepository;
+	
+	@Autowired
+	InstrumentHighlightTextRepository instrumentHighlightTextRepository;
+	
 	@PutMapping("/add")
 	public ResponseEntity<Object> add(@RequestBody Instrument i) {
 		
-		try {
-			return new ResponseEntity<Object>(instrumentRepository.save(i), HttpStatus.CREATED);
-		} catch(Exception e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.CONFLICT);
+		for(InstrumentDetailsText o : i.getIdt()) {
+			instrumentDetailsTextRepository.save(o);
 		}
+		
+		for(InstrumentHighlightText o : i.getIht()) {
+			instrumentHighlightTextRepository.save(o);
+		}
+		
+		return new ResponseEntity<Object>(instrumentRepository.save(i), HttpStatus.CREATED);
 		
 	}
 	
