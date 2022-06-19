@@ -56,7 +56,7 @@ public class BookingController {
 	public ResponseEntity<Object> addBooking(@RequestBody BookingConfigurationObject bookingObject){
 		
 		VerleihObjekt vo = voRepository.findById(bookingObject.voID).get();
-		if(vo.getAmount() <= 0) {
+		if(vo.getInstrument().getAmount() <= 0) {
 			return new ResponseEntity<Object>("Not enough instruments!", HttpStatus.CONFLICT);
 		}
 			try {
@@ -73,12 +73,12 @@ public class BookingController {
 				emailService.sendMailBooking(
 						user.getEmail(),
 						"Buchung bestätigt!",
-						new EmailVariablesObject(user.getUserName(), user.getFirstName(), user.getName(), "", "", vo.getCategory(), vo.getName(), "", "", "", ""),
+						new EmailVariablesObject(user.getUserName(), user.getFirstName(), user.getName(), "", "", vo.getInstrument().getCategory(), vo.getInstrument().getTitle(), "", "", "", ""),
 						"Booking.html",
 						qrCode
 				);
 				
-				vo.setAmount(vo.getAmount() - 1);
+				vo.getInstrument().setAmount(vo.getInstrument().getAmount() - 1);
 				voRepository.save(vo);
 				
 				return new ResponseEntity<Object>(bookingRepositroy.save(booking), HttpStatus.CREATED);
@@ -124,7 +124,7 @@ public class BookingController {
 			Optional<Booking> o = bookingRepositroy.findById(id);
 			Booking b = o.get();
 			b.setActive(false);
-			b.getVo().setAmount(b.getVo().getAmount() + 1);
+			b.getVo().getInstrument().setAmount(b.getVo().getInstrument().getAmount() + 1);
 			bookingRepositroy.save(b);
 			return new ResponseEntity<>(id, HttpStatus.OK);
 		} catch (NoSuchElementException nSE) {

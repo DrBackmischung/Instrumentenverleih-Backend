@@ -61,11 +61,11 @@ public class InstrumentController {
 			i.addIHT(instrumentHighlightTextRepository.findById(u).get());
 		}
 		
-		for(InstrumentDetailsText o : i.getIdt()) {
+		for(InstrumentDetailsText o : i.getDetailSections()) {
 			instrumentDetailsTextRepository.save(o);
 		}
 		
-		for(InstrumentHighlightText o : i.getIht()) {
+		for(InstrumentHighlightText o : i.getHighlightList()) {
 			instrumentHighlightTextRepository.save(o);
 		}
 		
@@ -86,6 +86,19 @@ public class InstrumentController {
 		catch(NoSuchElementException e) {
 			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PutMapping("/{id}/add")
+	public ResponseEntity<Object> add1(@PathVariable UUID id){
+		
+		try {
+			Instrument vo = instrumentRepository.findById(id).get();
+			vo.setAmount(vo.getAmount() + 1);
+			return new ResponseEntity<>(instrumentRepository.save(vo), HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<>(new InstrumentNotFoundException(id).getMessage(), HttpStatus.OK);
+		}
+		
 	}
 	
 	@Transactional

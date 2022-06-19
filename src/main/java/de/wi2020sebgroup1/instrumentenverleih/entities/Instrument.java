@@ -55,6 +55,14 @@ public class Instrument {
 	@OneToMany(mappedBy = "id")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<InstrumentDetailsText> detailSections;
+
+	@OneToMany(mappedBy = "id")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	private List<VerleihObjekt> verleihListe;
+	
+	@Column
+	@NotNull
+	private int amount;
 	
 	public Instrument() {
 		
@@ -62,7 +70,8 @@ public class Instrument {
 
 	public Instrument(@NotNull String title, @NotNull String category, @NotNull String mainText,
 			@NotNull String mainPicture, @NotNull String example, @NotNull String highlightBackground,
-			@NotNull String highlightText, List<InstrumentHighlightText> iht, List<InstrumentDetailsText> idt) {
+			@NotNull String highlightText, List<InstrumentHighlightText> highlightList,
+			List<InstrumentDetailsText> detailSections, List<VerleihObjekt> verleihListe, @NotNull int amount) {
 		super();
 		this.title = title;
 		this.category = category;
@@ -71,32 +80,10 @@ public class Instrument {
 		this.example = example;
 		this.highlightBackground = highlightBackground;
 		this.highlightText = highlightText;
-		this.highlightList = iht;
-		this.detailSections = idt;
-	}
-	
-	public void addIDT(InstrumentDetailsText i) {
-		detailSections.add(i);
-	}
-	
-	public void addIHT(InstrumentHighlightText i) {
-		highlightList.add(i);
-	}
-
-	public List<InstrumentHighlightText> getHighlightList() {
-		return highlightList;
-	}
-
-	public void setHighlightList(List<InstrumentHighlightText> highlightList) {
 		this.highlightList = highlightList;
-	}
-
-	public List<InstrumentDetailsText> getDetailSections() {
-		return detailSections;
-	}
-
-	public void setDetailSections(List<InstrumentDetailsText> detailSections) {
 		this.detailSections = detailSections;
+		this.verleihListe = verleihListe;
+		this.amount = amount;
 	}
 
 	public UUID getId() {
@@ -163,36 +150,62 @@ public class Instrument {
 		this.highlightText = highlightText;
 	}
 
-	public List<InstrumentHighlightText> getIht() {
+	public List<InstrumentHighlightText> getHighlightList() {
 		return highlightList;
 	}
 
-	public void setIht(List<InstrumentHighlightText> iht) {
-		this.highlightList = iht;
+	public void setHighlightList(List<InstrumentHighlightText> highlightList) {
+		this.highlightList = highlightList;
 	}
 
-	public List<InstrumentDetailsText> getIdt() {
+	public List<InstrumentDetailsText> getDetailSections() {
 		return detailSections;
 	}
 
-	public void setIdt(List<InstrumentDetailsText> idt) {
-		this.detailSections = idt;
+	public void setDetailSections(List<InstrumentDetailsText> detailSections) {
+		this.detailSections = detailSections;
+	}
+
+	public List<VerleihObjekt> getVerleihListe() {
+		return verleihListe;
+	}
+
+	public void setVerleihListe(List<VerleihObjekt> verleihListe) {
+		this.verleihListe = verleihListe;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	public void addIDT(InstrumentDetailsText idt) {
+		this.detailSections.add(idt);
+	}
+	
+	public void addIHT(InstrumentHighlightText iht) {
+		this.highlightList.add(iht);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + amount;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((detailSections == null) ? 0 : detailSections.hashCode());
 		result = prime * result + ((example == null) ? 0 : example.hashCode());
 		result = prime * result + ((highlightBackground == null) ? 0 : highlightBackground.hashCode());
+		result = prime * result + ((highlightList == null) ? 0 : highlightList.hashCode());
 		result = prime * result + ((highlightText == null) ? 0 : highlightText.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((detailSections == null) ? 0 : detailSections.hashCode());
-		result = prime * result + ((highlightList == null) ? 0 : highlightList.hashCode());
 		result = prime * result + ((mainPicture == null) ? 0 : mainPicture.hashCode());
 		result = prime * result + ((mainText == null) ? 0 : mainText.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((verleihListe == null) ? 0 : verleihListe.hashCode());
 		return result;
 	}
 
@@ -205,10 +218,17 @@ public class Instrument {
 		if (getClass() != obj.getClass())
 			return false;
 		Instrument other = (Instrument) obj;
+		if (amount != other.amount)
+			return false;
 		if (category == null) {
 			if (other.category != null)
 				return false;
 		} else if (!category.equals(other.category))
+			return false;
+		if (detailSections == null) {
+			if (other.detailSections != null)
+				return false;
+		} else if (!detailSections.equals(other.detailSections))
 			return false;
 		if (example == null) {
 			if (other.example != null)
@@ -220,6 +240,11 @@ public class Instrument {
 				return false;
 		} else if (!highlightBackground.equals(other.highlightBackground))
 			return false;
+		if (highlightList == null) {
+			if (other.highlightList != null)
+				return false;
+		} else if (!highlightList.equals(other.highlightList))
+			return false;
 		if (highlightText == null) {
 			if (other.highlightText != null)
 				return false;
@@ -229,16 +254,6 @@ public class Instrument {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (detailSections == null) {
-			if (other.detailSections != null)
-				return false;
-		} else if (!detailSections.equals(other.detailSections))
-			return false;
-		if (highlightList == null) {
-			if (other.highlightList != null)
-				return false;
-		} else if (!highlightList.equals(other.highlightList))
 			return false;
 		if (mainPicture == null) {
 			if (other.mainPicture != null)
@@ -255,6 +270,11 @@ public class Instrument {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (verleihListe == null) {
+			if (other.verleihListe != null)
+				return false;
+		} else if (!verleihListe.equals(other.verleihListe))
+			return false;
 		return true;
 	}
 
@@ -262,7 +282,8 @@ public class Instrument {
 	public String toString() {
 		return "Instrument [id=" + id + ", title=" + title + ", category=" + category + ", mainText=" + mainText
 				+ ", mainPicture=" + mainPicture + ", example=" + example + ", highlightBackground="
-				+ highlightBackground + ", highlightText=" + highlightText + ", iht=" + highlightList + ", idt=" + detailSections + "]";
+				+ highlightBackground + ", highlightText=" + highlightText + ", highlightList=" + highlightList
+				+ ", detailSections=" + detailSections + ", verleihListe=" + verleihListe + ", amount=" + amount + "]";
 	}
 
 }

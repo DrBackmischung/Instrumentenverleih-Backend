@@ -28,19 +28,6 @@ public class VerleihObjektController {
 	@Autowired
 	VerleihObjektRepository repo;
 	
-	@PutMapping("/{id}/add")
-	public ResponseEntity<Object> add1(@PathVariable UUID id){
-		
-		try {
-			VerleihObjekt vo = repo.findById(id).get();
-			vo.setAmount(vo.getAmount() + 1);
-			return new ResponseEntity<>(repo.save(vo), HttpStatus.OK);
-		} catch(Exception e) {
-			return new ResponseEntity<>(new VerleihObjektNotFoundException(id).getMessage(), HttpStatus.OK);
-		}
-		
-	}
-	
 	@PutMapping("/add")
 	public ResponseEntity<Object> addBooking(@RequestBody VerleihObjekt vo){
 		
