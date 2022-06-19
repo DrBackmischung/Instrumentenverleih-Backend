@@ -1,17 +1,17 @@
 package de.wi2020sebgroup1.instrumentenverleih.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name="iht")
@@ -25,18 +25,19 @@ public class InstrumentHighlightText {
 	@NotNull
 	private String text;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable
-    private List<Instrument> instruments = new ArrayList<>();
+	@ManyToOne
+	@NotFound(action=NotFoundAction.IGNORE)
+	@JoinColumn(name = "instrument_id", referencedColumnName = "id")
+    private Instrument instrument;
 	
 	public InstrumentHighlightText() {
 		
 	}
 
-	public InstrumentHighlightText(@NotNull String text, List<Instrument> instruments) {
+	public InstrumentHighlightText(@NotNull String text, Instrument instrument) {
 		super();
 		this.text = text;
-		this.instruments = instruments;
+		this.instrument = instrument;
 	}
 
 	public UUID getId() {
@@ -55,12 +56,12 @@ public class InstrumentHighlightText {
 		this.text = text;
 	}
 
-	public List<Instrument> getInstruments() {
-		return instruments;
+	public Instrument getInstrument() {
+		return instrument;
 	}
 
-	public void setInstruments(List<Instrument> instruments) {
-		this.instruments = instruments;
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class InstrumentHighlightText {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((instruments == null) ? 0 : instruments.hashCode());
+		result = prime * result + ((instrument == null) ? 0 : instrument.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -87,10 +88,10 @@ public class InstrumentHighlightText {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (instruments == null) {
-			if (other.instruments != null)
+		if (instrument == null) {
+			if (other.instrument != null)
 				return false;
-		} else if (!instruments.equals(other.instruments))
+		} else if (!instrument.equals(other.instrument))
 			return false;
 		if (text == null) {
 			if (other.text != null)
@@ -102,7 +103,9 @@ public class InstrumentHighlightText {
 
 	@Override
 	public String toString() {
-		return "InstrumentHighlightText [id=" + id + ", text=" + text + ", instrument=" + instruments + "]";
+		return "InstrumentHighlightText [id=" + id + ", text=" + text + ", instrument=" + instrument + "]";
 	}
+	
+	
 
 }
