@@ -1,5 +1,6 @@
 package de.wi2020sebgroup1.instrumentenverleih.controller;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -42,18 +43,11 @@ public class InstrumentController {
 	InstrumentHighlightTextRepository instrumentHighlightTextRepository;
 	
 	@PutMapping("/add")
-	public ResponseEntity<Object> add(@RequestBody InstrumentConfigurationObject ico) {
+	public ResponseEntity<Object> add(@RequestBody Instrument ico) {
 		
-		Instrument i = new Instrument();
-		i.setTitle(ico.title);
-		i.setCategory(ico.category);
-		i.setMainText(ico.mainText);
-		i.setMainPicture(ico.mainPicture);
-		i.setExample(ico.example);
-		i.setHighlightBackground(ico.highlightBackground);
-		i.setHighlightText(ico.highlightText);
 		
-		for(UUID u : ico.detailSections) {
+		
+		/*for(UUID u : ico.detailSections) {
 			i.addIDT(instrumentDetailsTextRepository.findById(u).get());
 		}
 		
@@ -67,15 +61,16 @@ public class InstrumentController {
 		
 		for(InstrumentHighlightText o : i.getHighlightList()) {
 			instrumentHighlightTextRepository.save(o);
-		}
+		}*/
 		
-		return new ResponseEntity<Object>(instrumentRepository.save(i), HttpStatus.CREATED);
+		return new ResponseEntity<Object>(instrumentRepository.save(ico), HttpStatus.CREATED);
 		
 	}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<Object> getAll(){
-		return new ResponseEntity<Object>(instrumentRepository.findAll(), HttpStatus.OK);
+		Iterable<Instrument> resultSet = instrumentRepository.findAll();
+		return new ResponseEntity<Object>(resultSet, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")

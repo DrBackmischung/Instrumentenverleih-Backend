@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ public class InstrumentDetailsText {
 	
 	@Id
 	@Column(columnDefinition= "VARBINARY(16)")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@Column
@@ -33,22 +36,20 @@ public class InstrumentDetailsText {
 	@NotNull
 	private String picture;
 	
-	@ManyToOne
-	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "instrument_id", referencedColumnName = "id")
-    private Instrument instrument;
+	//@ManyToOne
+	
+    //private Instrument instrument;
 	
 	public InstrumentDetailsText() {
 		
 	}
 
-	public InstrumentDetailsText(@NotNull String header, @NotNull String text, @NotNull String picture,
-			Instrument instrument) {
+	public InstrumentDetailsText(@NotNull String header, @NotNull String text, @NotNull String picture) {
 		super();
 		this.header = header;
 		this.text = text;
 		this.picture = picture;
-		this.instrument = instrument;
+		//this.instrument = instrument;
 	}
 
 	public UUID getId() {
@@ -83,13 +84,13 @@ public class InstrumentDetailsText {
 		this.picture = picture;
 	}
 
-	public Instrument getInstrument() {
-		return instrument;
-	}
+	//public Instrument getInstrument() {
+		//return instrument;
+	//}
 
-	public void setInstrument(Instrument instrument) {
-		this.instrument = instrument;
-	}
+//	public void setInstrument(Instrument instrument) {
+//		this.instrument = instrument;
+//	}
 
 	@Override
 	public int hashCode() {
@@ -97,7 +98,7 @@ public class InstrumentDetailsText {
 		int result = 1;
 		result = prime * result + ((header == null) ? 0 : header.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((instrument == null) ? 0 : instrument.hashCode());
+		//result = prime * result + ((instrument == null) ? 0 : instrument.hashCode());
 		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
@@ -122,11 +123,11 @@ public class InstrumentDetailsText {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (instrument == null) {
-			if (other.instrument != null)
-				return false;
-		} else if (!instrument.equals(other.instrument))
-			return false;
+		//if (instrument == null) {
+			//if (other.instrument != null)
+				//return false;
+		//} else if (!instrument.equals(other.instrument))
+			//return false;
 		if (picture == null) {
 			if (other.picture != null)
 				return false;
@@ -143,7 +144,7 @@ public class InstrumentDetailsText {
 	@Override
 	public String toString() {
 		return "InstrumentDetailsText [id=" + id + ", header=" + header + ", text=" + text + ", picture=" + picture
-				+ ", instrument=" + instrument + "]";
+				+ ", instrument=" + /*instrument +*/ "]";
 	}
 	
 	

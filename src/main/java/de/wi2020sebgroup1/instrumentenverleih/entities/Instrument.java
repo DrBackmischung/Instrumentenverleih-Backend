@@ -3,14 +3,21 @@ package de.wi2020sebgroup1.instrumentenverleih.entities;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name="instrument")
@@ -18,6 +25,7 @@ public class Instrument {
 	
 	@Id
 	@Column(columnDefinition= "VARBINARY(16)")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@Column
@@ -48,16 +56,19 @@ public class Instrument {
 	@NotNull
 	private String highlightText;
 
-	@OneToMany(mappedBy = "instrument")
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@NotFound(action=NotFoundAction.IGNORE)
+	@JoinColumn(name="highlightList_id", referencedColumnName = "id")
 	private List<InstrumentHighlightText> highlightList;
 
-	@OneToMany(mappedBy = "instrument")
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@NotFound(action=NotFoundAction.IGNORE)
+	@JoinColumn(name="detailSection_id", referencedColumnName = "id")
 	private List<InstrumentDetailsText> detailSections;
 
-	@OneToMany(mappedBy = "instrument")
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@NotFound(action=NotFoundAction.IGNORE)
+	@JoinColumn(name="verleihobjekt_id", referencedColumnName = "id")
 	private List<VerleihObjekt> verleihListe;
 	
 	@Column

@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,25 +21,21 @@ public class InstrumentHighlightText {
 	
 	@Id
 	@Column(columnDefinition= "VARBINARY(16)")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@Column
 	@NotNull
 	private String text;
 	
-	@ManyToOne
-	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "instrument_id", referencedColumnName = "id")
-    private Instrument instrument;
 	
 	public InstrumentHighlightText() {
 		
 	}
 
-	public InstrumentHighlightText(@NotNull String text, Instrument instrument) {
+	public InstrumentHighlightText(@NotNull String text) {
 		super();
 		this.text = text;
-		this.instrument = instrument;
 	}
 
 	public UUID getId() {
@@ -56,20 +54,13 @@ public class InstrumentHighlightText {
 		this.text = text;
 	}
 
-	public Instrument getInstrument() {
-		return instrument;
-	}
 
-	public void setInstrument(Instrument instrument) {
-		this.instrument = instrument;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((instrument == null) ? 0 : instrument.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -88,11 +79,7 @@ public class InstrumentHighlightText {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (instrument == null) {
-			if (other.instrument != null)
-				return false;
-		} else if (!instrument.equals(other.instrument))
-			return false;
+
 		if (text == null) {
 			if (other.text != null)
 				return false;
@@ -103,7 +90,7 @@ public class InstrumentHighlightText {
 
 	@Override
 	public String toString() {
-		return "InstrumentHighlightText [id=" + id + ", text=" + text + ", instrument=" + instrument + "]";
+		return "InstrumentHighlightText [id=" + id + ", text=" + text + "]";
 	}
 	
 	
