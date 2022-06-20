@@ -1,6 +1,5 @@
 package de.wi2020sebgroup1.instrumentenverleih.controller;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.wi2020sebgroup1.instrumentenverleih.configurationObject.InstrumentConfigurationObject;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
-import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentDetailsText;
-import de.wi2020sebgroup1.instrumentenverleih.entities.InstrumentHighlightText;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.InstrumentNotFoundException;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentDetailsTextRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentHighlightTextRepository;

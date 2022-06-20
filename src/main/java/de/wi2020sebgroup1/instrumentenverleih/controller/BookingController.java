@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.BookingConfigurationObject;
-import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
 import de.wi2020sebgroup1.instrumentenverleih.entities.User;
-import de.wi2020sebgroup1.instrumentenverleih.entities.VerleihObjekt;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.BookingNotFoundException;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentRepository;
