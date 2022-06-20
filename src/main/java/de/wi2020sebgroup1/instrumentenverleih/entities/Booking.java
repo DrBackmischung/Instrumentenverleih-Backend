@@ -42,8 +42,8 @@ public class Booking {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "verleih_id", referencedColumnName = "id")
-	private VerleihObjekt vo;
+	@JoinColumn(name = "instrument_id", referencedColumnName = "id")
+	private Instrument vo;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@NotFound(action=NotFoundAction.IGNORE)
@@ -55,7 +55,7 @@ public class Booking {
 	}
 	
 	public Booking(@NotNull UUID id,@NotNull Date bookingDate,
-			@NotNull User user, @NotNull VerleihObjekt vo) {
+			@NotNull User user, @NotNull Instrument vo) {
 		this.id = id;
 		this.bookingDate = bookingDate;
 		this.user = user;
@@ -103,11 +103,11 @@ public class Booking {
 	}
 
 
-	public VerleihObjekt getVo() {
+	public Instrument getVo() {
 		return vo;
 	}
 
-	public void setVo(VerleihObjekt vo) {
+	public void setVo(Instrument vo) {
 		this.vo = vo;
 	}
 

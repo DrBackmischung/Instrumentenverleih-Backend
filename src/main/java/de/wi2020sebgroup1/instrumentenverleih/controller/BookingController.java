@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.BookingConfigurationObject;
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
+import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
 import de.wi2020sebgroup1.instrumentenverleih.entities.User;
 import de.wi2020sebgroup1.instrumentenverleih.entities.VerleihObjekt;
 import de.wi2020sebgroup1.instrumentenverleih.exceptions.BookingNotFoundException;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
+import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.VerleihObjektRepository;
 import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
@@ -48,6 +50,9 @@ public class BookingController {
 	QRCodeGenerator qrCodeGenerator;
 	
 	@Autowired
+	InstrumentRepository instrumentRepository;
+	
+	@Autowired
 	EmailService emailService;
 	
 	@SuppressWarnings({ "static-access" })
@@ -55,8 +60,8 @@ public class BookingController {
 	@Transactional
 	public ResponseEntity<Object> addBooking(@RequestBody BookingConfigurationObject bookingObject){
 		
-		VerleihObjekt vo = voRepository.findById(bookingObject.voID).get();
-		if(vo.getInstrument().getAmount() <= 0) {
+		Instrument vo = instrumentRepository.findById(bookingObject.voID).get();
+		if(vo.getAmount() <= 0) {
 			return new ResponseEntity<Object>("Not enough instruments!", HttpStatus.CONFLICT);
 		}
 			try {
@@ -70,16 +75,16 @@ public class BookingController {
 				byte[] qrCode = qrCodeGenerator.generateQRCode(booking.getId().toString());
 				booking.setQrCode(qrCode);
 
-				emailService.sendMailBooking(
+				/*emailService.sendMailBooking(
 						user.getEmail(),
 						"Buchung bestätigt!",
-						new EmailVariablesObject(user.getUserName(), user.getFirstName(), user.getName(), "", "", vo.getInstrument().getCategory(), vo.getInstrument().getTitle(), "", "", "", ""),
+						new EmailVariablesObject(user.getUserName(), user.getFirstName(), user.getName(), "", "", vo.getCategory(), vo.getTitle(), "", "", "", ""),
 						"Booking.html",
 						qrCode
-				);
+				);*/
 				
-				vo.getInstrument().setAmount(vo.getInstrument().getAmount() - 1);
-				voRepository.save(vo);
+				vo.setAmount(vo.getAmount() - 1);
+				instrumentRepository.save(vo);
 				
 				return new ResponseEntity<Object>(bookingRepositroy.save(booking), HttpStatus.CREATED);
 			} catch(Exception e) {
@@ -124,7 +129,7 @@ public class BookingController {
 			Optional<Booking> o = bookingRepositroy.findById(id);
 			Booking b = o.get();
 			b.setActive(false);
-			b.getVo().getInstrument().setAmount(b.getVo().getInstrument().getAmount() + 1);
+			b.getVo().setAmount(b.getVo().getAmount() + 1);
 			bookingRepositroy.save(b);
 			return new ResponseEntity<>(id, HttpStatus.OK);
 		} catch (NoSuchElementException nSE) {
