@@ -48,15 +48,15 @@ public class Instrument {
 	@NotNull
 	private String highlightText;
 
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "instrument")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<InstrumentHighlightText> highlightList;
 
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "instrument")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<InstrumentDetailsText> detailSections;
 
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "instrument")
 	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private List<VerleihObjekt> verleihListe;
 	
