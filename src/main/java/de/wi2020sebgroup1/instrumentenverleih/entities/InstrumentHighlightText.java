@@ -19,7 +19,7 @@ public class InstrumentHighlightText {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
-	@Column
+	@Column(length = 10000)
 	@NotNull
 	private String text;
 	

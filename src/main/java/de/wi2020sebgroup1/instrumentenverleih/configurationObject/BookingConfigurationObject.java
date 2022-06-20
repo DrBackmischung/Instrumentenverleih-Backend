@@ -4,15 +4,17 @@ import java.sql.Date;
 import java.util.UUID;
 
 public class BookingConfigurationObject {
-	
+
 	public Date bookingDate;
+	public Date apprxReturnDate;
 	public UUID userID;
-	public UUID voID;
+	public UUID instrumentID;
 	
-	public BookingConfigurationObject(Date bookDate, UUID userID, UUID voID) {
+	public BookingConfigurationObject(Date bookDate, Date apprxReturnDate, UUID userID, UUID instrumentID) {
 		this.userID = userID;
+		this.apprxReturnDate = apprxReturnDate;
 		this.bookingDate = bookDate;
-		this.voID = voID;
+		this.instrumentID = instrumentID;
 	}
 
 }

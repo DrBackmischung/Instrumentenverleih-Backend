@@ -26,7 +26,6 @@ import de.wi2020sebgroup1.instrumentenverleih.exceptions.BookingNotFoundExceptio
 import de.wi2020sebgroup1.instrumentenverleih.repositories.BookingRepositroy;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.InstrumentRepository;
 import de.wi2020sebgroup1.instrumentenverleih.repositories.UserRepository;
-import de.wi2020sebgroup1.instrumentenverleih.repositories.VerleihObjektRepository;
 import de.wi2020sebgroup1.instrumentenverleih.services.EmailService;
 import de.wi2020sebgroup1.instrumentenverleih.services.QRCodeGenerator;
 
@@ -42,9 +41,6 @@ public class BookingController {
 	UserRepository userRepositroy;
 	
 	@Autowired
-	VerleihObjektRepository voRepository;
-	
-	@Autowired
 	QRCodeGenerator qrCodeGenerator;
 	
 	@Autowired
@@ -58,7 +54,7 @@ public class BookingController {
 	@Transactional
 	public ResponseEntity<Object> addBooking(@RequestBody BookingConfigurationObject bookingObject){
 		
-		Instrument vo = instrumentRepository.findById(bookingObject.voID).get();
+		Instrument vo = instrumentRepository.findById(bookingObject.instrumentID).get();
 		if(vo.getAmount() <= 0) {
 			return new ResponseEntity<Object>("Not enough instruments!", HttpStatus.CONFLICT);
 		}
@@ -68,7 +64,7 @@ public class BookingController {
 				
 				
 				
-				Booking booking = new Booking(bookingId, bookingObject.bookingDate, user, vo);
+				Booking booking = new Booking(bookingId, bookingObject.apprxReturnDate, bookingObject.bookingDate, vo, user);
 				booking.setActive(true);
 				byte[] qrCode = qrCodeGenerator.generateQRCode(booking.getId().toString());
 				booking.setQrCode(qrCode);

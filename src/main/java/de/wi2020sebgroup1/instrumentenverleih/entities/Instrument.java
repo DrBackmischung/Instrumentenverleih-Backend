@@ -35,7 +35,7 @@ public class Instrument {
 	@NotNull
 	private String category;
 	
-	@Column
+	@Column(length = 10000)
 	@NotNull
 	private String mainText;
 	
@@ -51,7 +51,7 @@ public class Instrument {
 	@NotNull
 	private String highlightBackground;
 	
-	@Column
+	@Column(length = 10000)
 	@NotNull
 	private String highlightText;
 
@@ -64,11 +64,6 @@ public class Instrument {
 	@NotFound(action=NotFoundAction.IGNORE)
 	@JoinColumn(name="detailSection_id", referencedColumnName = "id")
 	private List<InstrumentDetailsText> detailSections;
-
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name="verleihobjekt_id", referencedColumnName = "id")
-	private List<VerleihObjekt> verleihListe;
 	
 	@Column
 	@NotNull
@@ -81,7 +76,7 @@ public class Instrument {
 	public Instrument(@NotNull String title, @NotNull String category, @NotNull String mainText,
 			@NotNull String mainPicture, @NotNull String example, @NotNull String highlightBackground,
 			@NotNull String highlightText, List<InstrumentHighlightText> highlightList,
-			List<InstrumentDetailsText> detailSections, List<VerleihObjekt> verleihListe, @NotNull int amount) {
+			List<InstrumentDetailsText> detailSections, @NotNull int amount) {
 		super();
 		this.title = title;
 		this.category = category;
@@ -92,7 +87,6 @@ public class Instrument {
 		this.highlightText = highlightText;
 		this.highlightList = highlightList;
 		this.detailSections = detailSections;
-		this.verleihListe = verleihListe;
 		this.amount = amount;
 	}
 
@@ -176,14 +170,6 @@ public class Instrument {
 		this.detailSections = detailSections;
 	}
 
-	public List<VerleihObjekt> getVerleihListe() {
-		return verleihListe;
-	}
-
-	public void setVerleihListe(List<VerleihObjekt> verleihListe) {
-		this.verleihListe = verleihListe;
-	}
-
 	public int getAmount() {
 		return amount;
 	}
@@ -215,7 +201,6 @@ public class Instrument {
 		result = prime * result + ((mainPicture == null) ? 0 : mainPicture.hashCode());
 		result = prime * result + ((mainText == null) ? 0 : mainText.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((verleihListe == null) ? 0 : verleihListe.hashCode());
 		return result;
 	}
 
@@ -280,11 +265,6 @@ public class Instrument {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (verleihListe == null) {
-			if (other.verleihListe != null)
-				return false;
-		} else if (!verleihListe.equals(other.verleihListe))
-			return false;
 		return true;
 	}
 
@@ -293,7 +273,7 @@ public class Instrument {
 		return "Instrument [id=" + id + ", title=" + title + ", category=" + category + ", mainText=" + mainText
 				+ ", mainPicture=" + mainPicture + ", example=" + example + ", highlightBackground="
 				+ highlightBackground + ", highlightText=" + highlightText + ", highlightList=" + highlightList
-				+ ", detailSections=" + detailSections + ", verleihListe=" + verleihListe + ", amount=" + amount + "]";
+				+ ", detailSections=" + detailSections + ", amount=" + amount + "]";
 	}
 
 }

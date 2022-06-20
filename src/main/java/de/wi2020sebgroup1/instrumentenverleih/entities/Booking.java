@@ -1,6 +1,7 @@
 package de.wi2020sebgroup1.instrumentenverleih.entities;
 
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -34,6 +35,10 @@ public class Booking {
 	
 	@Column
 	@NotNull
+	private Date apprxReturnDate;
+	
+	@Column
+	@NotNull
 	private boolean active;
 	
 	@Column
@@ -53,15 +58,40 @@ public class Booking {
 	public Booking() {
 		
 	}
-	
-	public Booking(@NotNull UUID id,@NotNull Date bookingDate,
-			@NotNull User user, @NotNull Instrument vo) {
+
+	public Booking(UUID id, @NotNull Date bookingDate, @NotNull Date apprxReturnDate, Instrument vo, User user) {
+		super();
 		this.id = id;
 		this.bookingDate = bookingDate;
-		this.user = user;
+		this.apprxReturnDate = apprxReturnDate;
 		this.vo = vo;
+		this.user = user;
 	}
-	
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public Date getApprxReturnDate() {
+		return apprxReturnDate;
+	}
+
+	public void setApprxReturnDate(Date apprxReturnDate) {
+		this.apprxReturnDate = apprxReturnDate;
+	}
+
 	public boolean isActive() {
 		return active;
 	}
@@ -70,38 +100,13 @@ public class Booking {
 		this.active = active;
 	}
 
-	public User getUser() {
-		return user;
-	}
-	
-	public Date getBookingDate() {
-		return bookingDate;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-	
 	public byte[] getQrCode() {
 		return qrCode;
 	}
-	
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	
+
 	public void setQrCode(byte[] qrCode) {
 		this.qrCode = qrCode;
 	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 
 	public Instrument getVo() {
 		return vo;
@@ -111,12 +116,23 @@ public class Booking {
 		this.vo = vo;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
+		result = prime * result + ((apprxReturnDate == null) ? 0 : apprxReturnDate.hashCode());
 		result = prime * result + ((bookingDate == null) ? 0 : bookingDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + Arrays.hashCode(qrCode);
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((vo == null) ? 0 : vo.hashCode());
 		return result;
@@ -131,15 +147,42 @@ public class Booking {
 		if (getClass() != obj.getClass())
 			return false;
 		Booking other = (Booking) obj;
-		if (bookingDate != other.bookingDate)
+		if (active != other.active)
 			return false;
-		if (id != other.id)
+		if (apprxReturnDate == null) {
+			if (other.apprxReturnDate != null)
+				return false;
+		} else if (!apprxReturnDate.equals(other.apprxReturnDate))
 			return false;
-		if (user != other.user)
+		if (bookingDate == null) {
+			if (other.bookingDate != null)
+				return false;
+		} else if (!bookingDate.equals(other.bookingDate))
 			return false;
-		if (vo != other.vo)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (!Arrays.equals(qrCode, other.qrCode))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (vo == null) {
+			if (other.vo != null)
+				return false;
+		} else if (!vo.equals(other.vo))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Booking [id=" + id + ", bookingDate=" + bookingDate + ", apprxReturnDate=" + apprxReturnDate
+				+ ", active=" + active + ", qrCode=" + Arrays.toString(qrCode) + ", vo=" + vo + ", user=" + user + "]";
 	}
 
 }
