@@ -69,6 +69,10 @@ public class Instrument {
 	@NotNull
 	private int amount;
 	
+	@Column
+	@NotNull
+	private String languageCode;
+	
 	public Instrument() {
 		
 	}
@@ -76,7 +80,7 @@ public class Instrument {
 	public Instrument(@NotNull String title, @NotNull String category, @NotNull String mainText,
 			@NotNull String mainPicture, @NotNull String example, @NotNull String highlightBackground,
 			@NotNull String highlightText, List<InstrumentHighlightText> highlightList,
-			List<InstrumentDetailsText> detailSections, @NotNull int amount) {
+			List<InstrumentDetailsText> detailSections, @NotNull int amount, @NotNull String languageCode) {
 		super();
 		this.title = title;
 		this.category = category;
@@ -87,6 +91,7 @@ public class Instrument {
 		this.highlightText = highlightText;
 		this.highlightList = highlightList;
 		this.detailSections = detailSections;
+		this.languageCode = languageCode;
 		this.amount = amount;
 	}
 
@@ -141,9 +146,17 @@ public class Instrument {
 	public String getHighlightBackground() {
 		return highlightBackground;
 	}
+	
+	public String getLanguageCode() {
+		return languageCode;
+	}
 
 	public void setHighlightBackground(String highlightBackground) {
 		this.highlightBackground = highlightBackground;
+	}
+	
+	public void setLanguageCode(String languageCode) {
+		this.languageCode = languageCode;
 	}
 
 	public String getHighlightText() {
@@ -198,6 +211,7 @@ public class Instrument {
 		result = prime * result + ((highlightList == null) ? 0 : highlightList.hashCode());
 		result = prime * result + ((highlightText == null) ? 0 : highlightText.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((languageCode == null) ? 0 : languageCode.hashCode());
 		result = prime * result + ((mainPicture == null) ? 0 : mainPicture.hashCode());
 		result = prime * result + ((mainText == null) ? 0 : mainText.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -265,6 +279,13 @@ public class Instrument {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (languageCode == null) {
+			if(other.languageCode != null)
+				return false;
+		}else if(!languageCode.equals(other.languageCode)) {
+			return false;
+		}
+		
 		return true;
 	}
 
