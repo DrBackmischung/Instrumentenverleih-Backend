@@ -45,6 +45,10 @@ public class Booking {
 	@Lob
 	private byte[] qrCode;
 	
+	@Column
+	@Lob
+	private byte[] signatureCode;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@NotFound(action=NotFoundAction.IGNORE)
 	@JoinColumn(name = "instrument_id", referencedColumnName = "id")
@@ -124,6 +128,14 @@ public class Booking {
 		this.user = user;
 	}
 
+	public byte[] getSignatureCode() {
+		return signatureCode;
+	}
+
+	public void setSignatureCode(byte[] signatureCode) {
+		this.signatureCode = signatureCode;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,6 +145,7 @@ public class Booking {
 		result = prime * result + ((bookingDate == null) ? 0 : bookingDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + Arrays.hashCode(qrCode);
+		result = prime * result + Arrays.hashCode(signatureCode);
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((vo == null) ? 0 : vo.hashCode());
 		return result;
@@ -166,6 +179,8 @@ public class Booking {
 			return false;
 		if (!Arrays.equals(qrCode, other.qrCode))
 			return false;
+		if (!Arrays.equals(signatureCode, other.signatureCode))
+			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
@@ -182,7 +197,8 @@ public class Booking {
 	@Override
 	public String toString() {
 		return "Booking [id=" + id + ", bookingDate=" + bookingDate + ", apprxReturnDate=" + apprxReturnDate
-				+ ", active=" + active + ", qrCode=" + Arrays.toString(qrCode) + ", vo=" + vo + ", user=" + user + "]";
+				+ ", active=" + active + ", qrCode=" + Arrays.toString(qrCode) + ", signatureCode="
+				+ Arrays.toString(signatureCode) + ", vo=" + vo + ", user=" + user + "]";
 	}
 
 }

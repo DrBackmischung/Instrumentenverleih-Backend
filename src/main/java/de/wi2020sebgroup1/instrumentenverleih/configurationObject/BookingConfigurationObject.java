@@ -9,12 +9,14 @@ public class BookingConfigurationObject {
 	public Date apprxReturnDate;
 	public UUID userID;
 	public UUID instrumentID;
+	public byte[] signatureCode;
 	
-	public BookingConfigurationObject(Date bookDate, Date apprxReturnDate, UUID userID, UUID instrumentID) {
+	public BookingConfigurationObject(Date bookDate, Date apprxReturnDate, UUID userID, UUID instrumentID, byte[] signatureCode) {
 		this.userID = userID;
 		this.apprxReturnDate = apprxReturnDate;
 		this.bookingDate = bookDate;
 		this.instrumentID = instrumentID;
+		this.signatureCode = signatureCode;
 	}
 
 }

@@ -73,6 +73,10 @@ public class Instrument {
 	@NotNull
 	private String languageCode;
 	
+	@Column
+	@NotNull
+	private double price;
+	
 	public Instrument() {
 		
 	}
@@ -80,7 +84,7 @@ public class Instrument {
 	public Instrument(@NotNull String title, @NotNull String category, @NotNull String mainText,
 			@NotNull String mainPicture, @NotNull String example, @NotNull String highlightBackground,
 			@NotNull String highlightText, List<InstrumentHighlightText> highlightList,
-			List<InstrumentDetailsText> detailSections, @NotNull int amount, @NotNull String languageCode) {
+			List<InstrumentDetailsText> detailSections, @NotNull int amount, @NotNull String languageCode, @NotNull double price) {
 		super();
 		this.title = title;
 		this.category = category;
@@ -93,6 +97,7 @@ public class Instrument {
 		this.detailSections = detailSections;
 		this.languageCode = languageCode;
 		this.amount = amount;
+		this.price = price;
 	}
 
 	public UUID getId() {
@@ -199,6 +204,14 @@ public class Instrument {
 		this.highlightList.add(iht);
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -214,6 +227,9 @@ public class Instrument {
 		result = prime * result + ((languageCode == null) ? 0 : languageCode.hashCode());
 		result = prime * result + ((mainPicture == null) ? 0 : mainPicture.hashCode());
 		result = prime * result + ((mainText == null) ? 0 : mainText.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -264,6 +280,11 @@ public class Instrument {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (languageCode == null) {
+			if (other.languageCode != null)
+				return false;
+		} else if (!languageCode.equals(other.languageCode))
+			return false;
 		if (mainPicture == null) {
 			if (other.mainPicture != null)
 				return false;
@@ -274,18 +295,13 @@ public class Instrument {
 				return false;
 		} else if (!mainText.equals(other.mainText))
 			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (languageCode == null) {
-			if(other.languageCode != null)
-				return false;
-		}else if(!languageCode.equals(other.languageCode)) {
-			return false;
-		}
-		
 		return true;
 	}
 
@@ -294,7 +310,8 @@ public class Instrument {
 		return "Instrument [id=" + id + ", title=" + title + ", category=" + category + ", mainText=" + mainText
 				+ ", mainPicture=" + mainPicture + ", example=" + example + ", highlightBackground="
 				+ highlightBackground + ", highlightText=" + highlightText + ", highlightList=" + highlightList
-				+ ", detailSections=" + detailSections + ", amount=" + amount + "]";
+				+ ", detailSections=" + detailSections + ", amount=" + amount + ", languageCode=" + languageCode
+				+ ", price=" + price + "]";
 	}
 
 }

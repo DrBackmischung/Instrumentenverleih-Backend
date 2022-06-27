@@ -62,12 +62,11 @@ public class BookingController {
 				User user = userRepositroy.findById(bookingObject.userID).get();
 				UUID bookingId = UUID.randomUUID();
 				
-				
-				
 				Booking booking = new Booking(bookingId, bookingObject.apprxReturnDate, bookingObject.bookingDate, vo, user);
 				booking.setActive(true);
 				byte[] qrCode = qrCodeGenerator.generateQRCode(booking.getId().toString());
 				booking.setQrCode(qrCode);
+				booking.setSignatureCode(bookingObject.signatureCode);
 
 				/*emailService.sendMailBooking(
 						user.getEmail(),
