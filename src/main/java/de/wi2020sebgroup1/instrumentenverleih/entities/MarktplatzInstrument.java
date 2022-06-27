@@ -46,24 +46,18 @@ public class MarktplatzInstrument {
 	@NotNull
 	private double price;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@NotFound(action=NotFoundAction.IGNORE)
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
-	
 	public MarktplatzInstrument() {
 		
 	}
 
 	public MarktplatzInstrument(@NotNull String title, @NotNull String category, @NotNull String description,
-			@NotNull String pictureLink, @NotNull double price, User user) {
+			@NotNull String pictureLink, @NotNull double price) {
 		super();
 		this.title = title;
 		this.category = category;
 		this.description = description;
 		this.pictureLink = pictureLink;
 		this.price = price;
-		this.user = user;
 	}
 
 	public UUID getId() {
@@ -114,14 +108,6 @@ public class MarktplatzInstrument {
 		this.price = price;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -134,7 +120,6 @@ public class MarktplatzInstrument {
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -174,18 +159,13 @@ public class MarktplatzInstrument {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "MarktplatzInstrument [id=" + id + ", title=" + title + ", category=" + category + ", description="
-				+ description + ", pictureLink=" + pictureLink + ", price=" + price + ", user=" + user + "]";
+				+ description + ", pictureLink=" + pictureLink + ", price=" + price + "]";
 	}
 
 }
