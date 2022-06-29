@@ -43,7 +43,7 @@ public class EmailService {
 	@Autowired
 	HTMLService htmlService;
 	
-	public final static String EMAIL = "wwi2020seb@gmail.com";
+	public final static String EMAIL = "instrumentenverleih@gmx.de";
 	
 	public Message prepareMessage(Session session, String acc, String to, String subject, EmailVariablesObject evo, String file){
         try {
@@ -99,7 +99,7 @@ public class EmailService {
             Properties properties = new Properties();
             properties.put("mail.smtp.auth",  "true");
             properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.host", "mail.gmx.net");
             properties.put("mail.smtp.port", "587"); 
 
             Session session = Session.getInstance(properties, new Authenticator() {
@@ -125,7 +125,7 @@ public class EmailService {
 	        Properties properties = new Properties();
 	        properties.put("mail.smtp.auth",  "true");
 	        properties.put("mail.smtp.starttls.enable", "true");
-	        properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.host", "mail.gmx.net");
 	        properties.put("mail.smtp.port", "587");
 
 	        Session session = Session.getInstance(properties, new Authenticator() {

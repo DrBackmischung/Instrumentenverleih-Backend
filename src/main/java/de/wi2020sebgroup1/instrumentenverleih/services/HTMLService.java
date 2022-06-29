@@ -23,7 +23,7 @@ public class HTMLService {
 		
 		try {
 
-			url = new URL("https://raw.githubusercontent.com/DrBackmischung/Kino-Email/main/html/"+fileName);
+			url = new URL("https://raw.githubusercontent.com/DrBackmischung/Instrumentenverleih-Email/main/"+fileName);
 			br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line = br.readLine();
