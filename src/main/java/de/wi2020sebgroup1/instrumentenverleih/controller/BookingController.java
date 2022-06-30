@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wi2020sebgroup1.instrumentenverleih.configurationObject.BookingConfigurationObject;
+import de.wi2020sebgroup1.instrumentenverleih.configurationObject.EmailVariablesObject;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Booking;
 import de.wi2020sebgroup1.instrumentenverleih.entities.Instrument;
 import de.wi2020sebgroup1.instrumentenverleih.entities.User;
@@ -68,13 +69,13 @@ public class BookingController {
 				booking.setQrCode(qrCode);
 				booking.setSignatureCode(bookingObject.signatureCode);
 
-				/*emailService.sendMailBooking(
+				emailService.sendMailBooking(
 						user.getEmail(),
 						"Buchung bestätigt!",
 						new EmailVariablesObject(user.getUserName(), user.getFirstName(), user.getName(), "", "", vo.getCategory(), vo.getTitle(), "", "", "", ""),
 						"Booking.html",
 						qrCode
-				);*/
+				);
 				
 				vo.setAmount(vo.getAmount() - 1);
 				instrumentRepository.save(vo);
